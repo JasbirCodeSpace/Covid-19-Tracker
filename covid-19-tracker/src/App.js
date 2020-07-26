@@ -12,18 +12,52 @@ import Table from "./Table";
 import LineGraph from "./LineGraph";
 import { sortData } from "./util";
 import "./App.css";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({});
+  const [mapZoom, setMapZoom] = useState(3);
+  const [locationError, setLocationError] = useState({});
+
+  const onPositionChange = ({ coords }) => {
+    setMapCenter({
+      lat: coords.latitude,
+      lng: coords.longitude,
+    });
+  };
+
+  const onPositionError = (error) => {
+    setLocationError(error.message);
+  };
+
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
       });
+  }, []);
+
+  useEffect(() => {
+    if (!("geolocation" in navigator)) {
+      setMapCenter({
+        lat: 34.80746,
+        lng: -40.4796,
+      });
+      setLocationError("Geolocation is not supported");
+      return;
+    }
+    console.log("location", navigator.geolocation);
+
+    let watcher = navigator.geolocation.watchPosition(function (position) {
+      onPositionChange(position.coords);
+      console.log(position.coords);
+    });
+    return () => navigator.geolocation.clearWatch(watcher);
   }, []);
 
   useEffect(() => {
@@ -96,7 +130,7 @@ function App() {
           />
         </div>
 
-        <Map />
+        <Map center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
         <CardContent>
@@ -106,11 +140,6 @@ function App() {
           <LineGraph />
         </CardContent>
       </Card>
-      {/* Table */}
-
-      {/* Graph */}
-
-      {/* Map */}
     </div>
   );
 }
