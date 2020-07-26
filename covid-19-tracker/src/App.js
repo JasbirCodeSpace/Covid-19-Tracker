@@ -19,20 +19,12 @@ function App() {
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
-  const [mapCenter, setMapCenter] = useState({});
-  const [mapZoom, setMapZoom] = useState(3);
-  const [locationError, setLocationError] = useState({});
-
-  const onPositionChange = ({ coords }) => {
-    setMapCenter({
-      lat: coords.latitude,
-      lng: coords.longitude,
-    });
-  };
-
-  const onPositionError = (error) => {
-    setLocationError(error.message);
-  };
+  const [mapCenter, setMapCenter] = useState({
+    lat: 34.80746,
+    lng: -40.4796,
+  });
+  const [mapZoom, setMapZoom] = useState(2);
+  const [mapCountries, setMapCountries] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -40,24 +32,6 @@ function App() {
       .then((data) => {
         setCountryInfo(data);
       });
-  }, []);
-
-  useEffect(() => {
-    if (!("geolocation" in navigator)) {
-      setMapCenter({
-        lat: 34.80746,
-        lng: -40.4796,
-      });
-      setLocationError("Geolocation is not supported");
-      return;
-    }
-    console.log("location", navigator.geolocation);
-
-    let watcher = navigator.geolocation.watchPosition(function (position) {
-      onPositionChange(position.coords);
-      console.log(position.coords);
-    });
-    return () => navigator.geolocation.clearWatch(watcher);
   }, []);
 
   useEffect(() => {
@@ -72,6 +46,7 @@ function App() {
           const sortedData = sortData(data);
           setTableData(sortedData);
           setCountries(countries);
+          setMapCountries(sortedData);
         });
     };
 
@@ -89,6 +64,8 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
     console.log(countryInfo);
   };
@@ -130,7 +107,7 @@ function App() {
           />
         </div>
 
-        <Map center={mapCenter} zoom={mapZoom} />
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
         <CardContent>
