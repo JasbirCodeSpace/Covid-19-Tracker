@@ -2,6 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
+const casesTypeColors = {
+  cases: {
+    hex: "#CC1034",
+    rgb: "rgb(204, 16, 52)",
+    half_op: "rgb(204, 16, 52, 0.5)",
+    multiplier: 800,
+  },
+  recovered: {
+    hex: "#7dd71d",
+    rgb: "rgb(125, 215, 29)",
+    half_op: "rgb(125, 215, 29, 0.5)",
+    multiplier: 1200,
+  },
+  deaths: {
+    hex: "#fb4443",
+    rgb: "rgb(251, 68, 67)",
+    half_op: "rgb(251, 68, 67, 0.5)",
+    multiplier: 2000,
+  },
+};
 const options = {
   legend: {
     display: false,
@@ -53,11 +73,11 @@ const buildChartData = (data, casesType = "cases") => {
     if (lastDataPoint) {
       const newDataPoint = {
         x: date,
-        y: data["cases"][date] - lastDataPoint,
+        y: data[casesType][date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = data["cases"][date];
+    lastDataPoint = data[casesType][date];
   }
   return chartData;
 };
@@ -67,10 +87,10 @@ function LineGraph({ casesType = "cases" }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=60")
+      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=90")
         .then((response) => response.json())
         .then((data) => {
-          const chartData = buildChartData(data);
+          const chartData = buildChartData(data, casesType);
           setData(chartData);
         });
     };
@@ -86,8 +106,8 @@ function LineGraph({ casesType = "cases" }) {
             datasets: [
               {
                 data: data,
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                backgroundColor: casesTypeColors[casesType].half_op,
+                borderColor: casesTypeColors[casesType].hex,
               },
             ],
           }}
