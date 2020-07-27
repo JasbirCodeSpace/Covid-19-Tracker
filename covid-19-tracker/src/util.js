@@ -28,7 +28,7 @@ export const sortData = (data) => {
   return sortedData.sort((a, b) => (a.cases > b.cases ? -1 : 1));
 };
 
-export const showDataOnMap = (data, casesType = "cases") => {
+export const showDataOnMap = (data, casesType = "cases") =>
   data.map((country) => (
     <Circle
       center={[country.countryInfo.lat, country.countryInfo.long]}
@@ -38,10 +38,5 @@ export const showDataOnMap = (data, casesType = "cases") => {
       radius={
         Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
       }
-    >
-      <Popup>
-        <h1>I'm a popup</h1>
-      </Popup>
-    </Circle>
+    ></Circle>
   ));
-};
