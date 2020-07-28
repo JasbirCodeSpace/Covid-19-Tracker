@@ -10,6 +10,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
+[![Watchers][watchers-shield]][watchers-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -127,7 +128,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Jasbir - [@your_twitter](https://twitter.com/your_username) - shikhawat.jasbir@gmail.com
+Jasbir - [jasbir-shikhawat](https://www.linkedin.com/in/jasbir-shikhawat/) - shikhawat.jasbir@gmail.com
 
 Project Link: [https://github.com/JasbirCodeSpace/Covid-19-Tracker](https://github.com/JasbirCodeSpace/Covid-19-Tracker)
 
@@ -152,10 +153,12 @@ Live Application Link: [https://covid-19-tracker-b4dda.web.app/](https://covid-1
 [forks-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/network/members
 [stars-shield]: https://img.shields.io/github/stars/JasbirCodeSpace/Covid-19-Tracker.svg?style=flat-square
 [stars-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/stargazers
+[watchers-shield]: https://img.shields.io/github/watchers/JasbirCodeSpace/Covid-19-Tracker?style=flat-square
+[watchers-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/watchers
 [issues-shield]: https://img.shields.io/github/issues/JasbirCodeSpace/Covid-19-Tracker.svg?style=flat-square
 [issues-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/issues
 [license-shield]: https://img.shields.io/github/license/JasbirCodeSpace/Covid-19-Tracker.svg?style=flat-square
-[license-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/blob/master/LICENSE.txt
+[license-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/jasbir-shikhawat
 [product-screenshot]: covid-19-tracker/public/screenshot.png
