@@ -74,4 +74,16 @@ body::-webkit-scrollbar-thumb {
   .app {
     flex-direction: column;
   }
+
+  .app__stats {
+    flex-direction: column;
+  }
+
+  .app__header {
+    flex-direction: column;
+  }
+
+  .app__right {
+    margin-top: 20px;
+  }
 }

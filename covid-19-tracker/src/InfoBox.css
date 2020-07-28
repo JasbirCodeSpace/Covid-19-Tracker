@@ -3,6 +3,10 @@
     cursor: pointer;
 }
 
+.infoBox__title {
+    font-weight: bold !important;
+}
+
 .infoBox:not(:last-child) {
     margin-right: 15px;
 }
@@ -48,4 +52,11 @@
 
 .infoBox__cases--orange {
     color: #fb4443 !important;
+}
+
+@media (max-width: 990px) {
+
+    .infoBox {
+        margin-top: 20px;
+    }
 }
