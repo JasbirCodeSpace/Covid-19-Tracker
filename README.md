@@ -9,6 +9,7 @@
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
+[![Followers][follow-shield]][follow-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Watchers][watchers-shield]][watchers-url]
 [![Issues][issues-shield]][issues-url]
@@ -157,7 +158,9 @@ Live Application Link: [https://covid-19-tracker-b4dda.web.app/](https://covid-1
 [watchers-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/watchers
 [issues-shield]: https://img.shields.io/github/issues/JasbirCodeSpace/Covid-19-Tracker.svg?style=flat-square
 [issues-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/issues
-[license-shield]: https://img.shields.io/github/license/JasbirCodeSpace/Covid-19-Tracker.svg?style=flat-square
+[follow-shield]: https://img.shields.io/github/followers/JasbirCodeSpace?style=flat-square
+[follow-url]:https://github.com/user/following/JasbirCodeSpace
+[license-shield]: https://img.shields.io/github/license/JasbirCodeSpace/Covid-19-Tracker?style=flat-square
 [license-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/jasbir-shikhawat
