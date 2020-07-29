@@ -9,12 +9,16 @@
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
-[![Followers][follow-shield]][follow-url]
+[![Issues][issues-shield]][issues-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Watchers][watchers-shield]][watchers-url]
-[![Issues][issues-shield]][issues-url]
+[![Followers][follow-shield]][follow-url]
+[![Repository][repo-shield]][repo-url]
+[![HitCount][hits-shield]][hits-url]
+[![Website][website-shield]][website-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 <!-- PROJECT LOGO -->
 <br />
@@ -159,7 +163,13 @@ Live Application Link: [https://covid-19-tracker-b4dda.web.app/](https://covid-1
 [issues-shield]: https://img.shields.io/github/issues/JasbirCodeSpace/Covid-19-Tracker.svg?style=flat-square
 [issues-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/issues
 [follow-shield]: https://img.shields.io/github/followers/JasbirCodeSpace?style=flat-square
-[follow-url]:https://github.com/user/following/JasbirCodeSpace
+[follow-url]: https://github.com/user/following/JasbirCodeSpace
+[hits-shield]: http://hits.dwyl.com/JasbirCodeSpace/Covid-19-Tracker.svg
+[hits-url]: http://hits.dwyl.com/JasbirCodeSpace/Covid-19-Tracker
+[repo-shield]: https://img.shields.io/github/repo-size/JasbirCodeSpace/Covid-19-Tracker?style=flat-square
+[repo-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker
+[website-shield]: https://img.shields.io/website?style=flat-square&url=https%3A%2F%2Fcovid-19-tracker-b4dda.web.app
+[website-url]: https://covid-19-tracker-b4dda.web.app/
 [license-shield]: https://img.shields.io/github/license/JasbirCodeSpace/Covid-19-Tracker?style=flat-square
 [license-url]: https://github.com/JasbirCodeSpace/Covid-19-Tracker/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
