@@ -30,9 +30,9 @@
   <h3 align="center">COVID-19 Tracker</h3>
 
   <p align="center">
-    Track different stats of countries all over the world
+    Track different states of countries all over the world
     <br />
-    <a href="https://github.com/JasbirCodeSpace/Covid-19-Tracke"><strong>Explore the project »</strong></a>
+    <a href="https://github.com/JasbirCodeSpace/Covid-19-Tracker"><strong>Explore the project »</strong></a>
     <br />
     <br />
     <a href="https://covid-19-tracker-b4dda.web.app/">View Demo</a>
