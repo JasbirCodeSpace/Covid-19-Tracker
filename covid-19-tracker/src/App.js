@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  FormControl,
-  Select,
-  MenuItem,
-  Card,
-  CardContent,
-} from "@material-ui/core";
+import { Card, CardContent } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import { Autocomplete } from "@material-ui/lab";
+import { makeStyles } from "@material-ui/core/styles";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
@@ -26,6 +23,25 @@ function App() {
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
+  const useStyles = makeStyles({
+    option: {
+      fontSize: 15,
+      "& > span": {
+        marginRight: 10,
+        fontSize: 20,
+      },
+    },
+  });
+  const countryToFlag = (value) => {
+    let imageSrc =
+      "https://raw.githubusercontent.com/linssen/country-flag-icons/master/images/svg/";
+    if (value === "worldwide") {
+    } else {
+      imageSrc += value + ".svg";
+    }
+    return imageSrc;
+  };
+  const classes = useStyles();
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -43,10 +59,18 @@ function App() {
           const countries = data.map((country) => ({
             name: country.country,
             value: country.countryInfo.iso3,
+            flag: country.countryInfo.flag,
           }));
+          countries.push({
+            name: "Worldwide",
+            value: "worldwide",
+            flag:
+              "https://cdn2.iconfinder.com/data/icons/pittogrammi/142/39-512.png",
+          });
           const sortedData = sortData(data);
           setTableData(sortedData);
           setMapCountries(data);
+
           setCountries(countries);
         });
     };
@@ -54,8 +78,10 @@ function App() {
     getCountriesData();
   }, []);
 
-  const onCountryChange = async (e) => {
-    const countryCode = e.target.value;
+  const onCountryChange = async (e, country) => {
+    if (country === null) return;
+    const countryCode = country.value;
+    console.log(country.flag);
     const url =
       countryCode === "worldwide"
         ? "https://disease.sh/v3/covid-19/all"
@@ -65,8 +91,12 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        setMapZoom(3);
+        if (countryCode !== "worldwide") {
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setMapZoom(3);
+        } else {
+          setMapZoom(2);
+        }
       });
   };
 
@@ -75,18 +105,37 @@ function App() {
       <div className="app__left">
         <div className="app__header">
           <h1>Covid-19 Tracker</h1>
-          <FormControl className="app__dropdown">
-            <Select
-              variant="outlined"
-              onChange={onCountryChange}
-              value={country}
-            >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
-              {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Autocomplete
+            id="country-select"
+            className="app__dropdown"
+            style={{ width: 300 }}
+            options={countries}
+            classes={{
+              option: classes.option,
+            }}
+            autoHighlight
+            onChange={onCountryChange}
+            getOptionLabel={(option) => option.name}
+            renderOption={(option) => (
+              <React.Fragment>
+                <span>
+                  <img src={option.flag} width="20" height="20" />
+                </span>
+                {option.name}
+              </React.Fragment>
+            )}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Choose a country"
+                variant="outlined"
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: "new-password", // disable autocomplete and autofill
+                }}
+              />
+            )}
+          />
         </div>
 
         <div className="app__stats">
