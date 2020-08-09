@@ -104,7 +104,10 @@ function App() {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>Covid-19 Tracker</h1>
+          <h1 class="main-heading">
+            <span class="main-heading-primary">Covid-19</span>
+            <span class="main-heading-secondary">Tracker</span>
+          </h1>
           <Autocomplete
             id="country-select"
             className="app__dropdown"
