@@ -14,72 +14,16 @@ html {
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
 
-.app {
-  width: 75%;
-  margin: 0 auto;
-}
-
-.app__left {
-  flex: 0.9;
-}
-
-.app__right {
-  display: flex;
-  flex-direction: column;
-}
-
-.app__right .MuiCardContent-root {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.app__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
 .app__header > h1 {
   color: #fc3c3c;
   font-size: 2rem;
 }
-
-.app__stats {
-  display: flex;
-  justify-content: space-between;
-}
-
 .app__dropdown {
   background-color: #fff;
 }
 
 .app__graph {
   flex-grow: 1;
-}
-
-.app__graphTitle {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-@media (max-width: 990px) {
-  .app {
-    width: 100%;
-  }
-
-  .app__stats {
-    flex-direction: column;
-  }
-
-  .app__header {
-    flex-direction: column;
-  }
-
-  .app__right {
-    margin-top: 20px;
-  }
 }
 
 /* app header */
@@ -134,5 +78,124 @@ html {
   100% {
     opacity: 1;
     transform: translate(0);
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .app {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .app__stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+  .app__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+  }
+  .main-heading {
+    margin-bottom: 20px;
+  }
+  .app__mapContainer {
+    margin-bottom: 20px;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .app {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .app__stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .app__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+  }
+  .main-heading {
+    margin-bottom: 20px;
+  }
+  .app__mapContainer {
+    margin-bottom: 20px;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .app {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .app__stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .app__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0px;
+  }
+  .app__mapContainer {
+    margin-bottom: 20px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .app {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .app__stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .app__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0px;
+  }
+  .app__mapContainer {
+    margin-bottom: 20px;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .app {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .app__stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .app__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 25px 0px;
+  }
+  .app__mapContainer {
+    margin-bottom: 20px;
   }
 }
