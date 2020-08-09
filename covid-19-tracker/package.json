@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "chart.js": "^2.9.3",
     "cra-template": "1.0.3",
     "leaflet": "^1.6.0",
+    "mui-datatables": "^3.4.0",
     "numeral": "^2.0.6",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",
