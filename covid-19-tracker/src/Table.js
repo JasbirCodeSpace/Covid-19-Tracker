@@ -43,7 +43,13 @@ function createData(country) {
   const cases = country.cases;
   const deaths = country.deaths;
   const recovered = country.recovered;
-  return { flag, name, cases, deaths, recovered };
+  return {
+    flag,
+    name,
+    cases,
+    recovered,
+    deaths,
+  };
 }
 
 function createRows(countries) {
