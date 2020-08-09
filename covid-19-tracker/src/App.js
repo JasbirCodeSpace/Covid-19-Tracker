@@ -102,7 +102,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app__left">
+      <div className="app__mapContainer">
         <div className="app__header">
           <h1 class="main-heading">
             <span class="main-heading-primary">Covid-19</span>
@@ -175,14 +175,16 @@ function App() {
           zoom={mapZoom}
         />
       </div>
-      <Card className="app__right">
-        <CardContent>
-          <h3 className="app__tableTitle">Live Cases by Country</h3>
-          <Table countries={tableData} />
-          <h3 className="app__graphTitle">Worldwide New {casesType}</h3>
-          <LineGraph className="app__graph" casesType={casesType} />
-        </CardContent>
-      </Card>
+      <div className="app__TableChartContainer">
+        <Card>
+          <CardContent>
+            <h3 className="app__tableTitle">Live Cases by Country</h3>
+            <Table countries={tableData} />
+            <h3 className="app__graphTitle">Worldwide New {casesType}</h3>
+            <LineGraph className="app__graph" casesType={casesType} />
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
