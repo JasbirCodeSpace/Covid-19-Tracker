@@ -178,7 +178,6 @@ function App() {
       <div className="app__TableChartContainer">
         <Card>
           <CardContent>
-            <h3 className="app__tableTitle">Live Cases by Country</h3>
             <Table countries={tableData} />
             <h3 className="app__graphTitle">Worldwide New {casesType}</h3>
             <LineGraph className="app__graph" casesType={casesType} />
