@@ -15,13 +15,22 @@ html {
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
 
-.app__header>h1 {
+.app__header > h1 {
   color: #fc3c3c;
   font-size: 2rem;
 }
 
 .app__dropdown {
   background-color: #fff;
+}
+
+.graph__cards {
+  display: flex;
+  flex-direction: column;
+}
+
+.graph__card {
+  margin: 10px 20px;
 }
 
 /* app header */
@@ -277,5 +286,4 @@ html {
     flex-grow: 1;
     margin: 0px 0px;
   }
-
 }

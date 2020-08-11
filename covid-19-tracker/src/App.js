@@ -13,7 +13,7 @@ import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [country, setCountry] = useState("worldwide");
+  const [country, setCountry] = useState("Worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({
@@ -32,15 +32,7 @@ function App() {
       },
     },
   });
-  const countryToFlag = (value) => {
-    let imageSrc =
-      "https://raw.githubusercontent.com/linssen/country-flag-icons/master/images/svg/";
-    if (value === "worldwide") {
-    } else {
-      imageSrc += value + ".svg";
-    }
-    return imageSrc;
-  };
+
   const classes = useStyles();
 
   useEffect(() => {
@@ -63,7 +55,7 @@ function App() {
           }));
           countries.push({
             name: "Worldwide",
-            value: "worldwide",
+            value: "Worldwide",
             flag:
               "https://cdn2.iconfinder.com/data/icons/pittogrammi/142/39-512.png",
           });
@@ -81,9 +73,8 @@ function App() {
   const onCountryChange = async (e, country) => {
     if (country === null) return;
     const countryCode = country.value;
-    console.log(country.flag);
     const url =
-      countryCode === "worldwide"
+      countryCode === "Worldwide"
         ? "https://disease.sh/v3/covid-19/all"
         : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
     await fetch(url)
@@ -91,7 +82,7 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-        if (countryCode !== "worldwide") {
+        if (countryCode !== "Worldwide") {
           setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
           setMapZoom(3);
         } else {
@@ -122,7 +113,7 @@ function App() {
             renderOption={(option) => (
               <React.Fragment>
                 <span>
-                  <img src={option.flag} width="20" height="20" />
+                  <img src={option.flag} alt="" width="20" height="20" />
                 </span>
                 {option.name}
               </React.Fragment>
@@ -179,8 +170,7 @@ function App() {
         <Card>
           <CardContent class="table-chart-container">
             <Table className="app__table" countries={tableData} />
-            {/* <h3 className="app__graphTitle">Worldwide New {casesType}</h3> */}
-            <LineGraph className="app__graph" casesType={casesType} />
+            <LineGraph className="app__graph" country={country} />
           </CardContent>
         </Card>
       </div>

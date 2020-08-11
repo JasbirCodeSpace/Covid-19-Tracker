@@ -11,7 +11,7 @@ const columns = [
       filter: false,
       sort: false,
       customBodyRender: (value, meta, update) => (
-        <img src={value} width="40" height="25" />
+        <img src={value} alt="" width="40" height="25" />
       ),
     },
   },
