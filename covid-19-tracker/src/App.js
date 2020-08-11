@@ -178,7 +178,7 @@ function App() {
       <div className="app__TableChartContainer">
         <Card>
           <CardContent class="table-chart-container">
-            <Table countries={tableData} />
+            <Table className="app__table" countries={tableData} />
             {/* <h3 className="app__graphTitle">Worldwide New {casesType}</h3> */}
             <LineGraph className="app__graph" casesType={casesType} />
           </CardContent>

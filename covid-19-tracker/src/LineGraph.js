@@ -67,32 +67,54 @@ const options = {
   },
 };
 
-const buildChartData = (data, casesType = "cases") => {
-  const chartData = [];
+const parseChartData = (data, casesType) => {
   let lastDataPoint;
-  for (let date in data.cases) {
+  const chartData = [];
+  for (let date in data) {
     if (lastDataPoint) {
       const newDataPoint = {
         x: date,
-        y: data[casesType][date] - lastDataPoint,
+        y: data[date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = data[casesType][date];
+    lastDataPoint = data[date];
   }
   return chartData;
 };
+const buildChartData = (data, casesType = "cases") => {
+  const casesData = parseChartData(data.cases, "cases");
+  const recoveredData = parseChartData(data.recovered, "recovered");
+  const deathsData = parseChartData(data.deaths, "deaths");
+
+  return [casesData, recoveredData, deathsData];
+};
 
 function LineGraph({ casesType = "cases", ...props }) {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    cases: [],
+    recovered: [],
+    deaths: [],
+  });
+  // const [recoveredData, setRecoveredData] = useState({});
+  // const [deathsData, setDeathsData] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
         .then((response) => response.json())
         .then((data) => {
-          const chartData = buildChartData(data, casesType);
-          setData(chartData);
+          const [casesData, recoveredData, deathsData] = buildChartData(
+            data,
+            casesType
+          );
+
+          setData({
+            cases: casesData,
+            recovered: recoveredData,
+            deaths: deathsData,
+          });
+          // setDeathsData(deaths);
         });
     };
     fetchData();
@@ -100,7 +122,7 @@ function LineGraph({ casesType = "cases", ...props }) {
 
   return (
     <div className={props.className}>
-      {data?.length > 0 && (
+      {data.cases?.length > 0 && (
         <Card>
           <CardContent>
             <Line
@@ -108,9 +130,37 @@ function LineGraph({ casesType = "cases", ...props }) {
               data={{
                 datasets: [
                   {
-                    data: data,
+                    data: data.cases,
                     backgroundColor: casesTypeColors[casesType].half_op,
                     borderColor: casesTypeColors[casesType].hex,
+                  },
+                ],
+              }}
+            />
+          </CardContent>
+          <CardContent>
+            <Line
+              options={options}
+              data={{
+                datasets: [
+                  {
+                    data: data.recovered,
+                    backgroundColor: casesTypeColors["recovered"].half_op,
+                    borderColor: casesTypeColors["recovered"].hex,
+                  },
+                ],
+              }}
+            />
+          </CardContent>
+          <CardContent>
+            <Line
+              options={options}
+              data={{
+                datasets: [
+                  {
+                    data: data.deaths,
+                    backgroundColor: casesTypeColors["deaths"].half_op,
+                    borderColor: casesTypeColors["deaths"].hex,
                   },
                 ],
               }}
