@@ -29,6 +29,7 @@ const columns = [
     options: {
       filter: true,
       sort: true,
+      customBodyRender: (value, meta, update) => numeral(value).format("0,0"),
     },
   },
   {
@@ -37,6 +38,7 @@ const columns = [
     options: {
       filter: true,
       sort: true,
+      customBodyRender: (value, meta, update) => numeral(value).format("0,0"),
     },
   },
   {
@@ -45,6 +47,7 @@ const columns = [
     options: {
       filter: true,
       sort: true,
+      customBodyRender: (value, meta, update) => numeral(value).format("0,0"),
     },
   },
 ];

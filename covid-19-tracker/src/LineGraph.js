@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Card, CardContent } from "@material-ui/core";
 import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
@@ -87,7 +88,7 @@ function LineGraph({ casesType = "cases", ...props }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=90")
+      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
         .then((response) => response.json())
         .then((data) => {
           const chartData = buildChartData(data, casesType);
@@ -100,18 +101,22 @@ function LineGraph({ casesType = "cases", ...props }) {
   return (
     <div className={props.className}>
       {data?.length > 0 && (
-        <Line
-          options={options}
-          data={{
-            datasets: [
-              {
-                data: data,
-                backgroundColor: casesTypeColors[casesType].half_op,
-                borderColor: casesTypeColors[casesType].hex,
-              },
-            ],
-          }}
-        />
+        <Card>
+          <CardContent>
+            <Line
+              options={options}
+              data={{
+                datasets: [
+                  {
+                    data: data,
+                    backgroundColor: casesTypeColors[casesType].half_op,
+                    borderColor: casesTypeColors[casesType].hex,
+                  },
+                ],
+              }}
+            />
+          </CardContent>
+        </Card>
       )}
     </div>
   );

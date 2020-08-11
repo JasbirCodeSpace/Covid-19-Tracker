@@ -5,6 +5,7 @@
 body {
   background-color: #f5f6fa;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -14,16 +15,13 @@ html {
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
 
-.app__header > h1 {
+.app__header>h1 {
   color: #fc3c3c;
   font-size: 2rem;
 }
+
 .app__dropdown {
   background-color: #fff;
-}
-
-.app__graph {
-  flex-grow: 1;
 }
 
 /* app header */
@@ -31,6 +29,7 @@ html {
   color: #777;
   text-transform: uppercase;
 }
+
 .main-heading-primary {
   display: block;
   font-size: 2rem;
@@ -93,6 +92,7 @@ html {
     flex-direction: column;
     justify-content: stretch;
   }
+
   .app__header {
     display: flex;
     flex-direction: column;
@@ -100,11 +100,25 @@ html {
     align-items: center;
     margin: 20px 0px;
   }
+
   .main-heading {
     margin-bottom: 20px;
   }
+
   .app__mapContainer {
     margin-bottom: 20px;
+  }
+
+  .table-chart-container {
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .app__graph {
+    flex-grow: 0.5;
+    margin: 20px 0px;
   }
 }
 
@@ -114,11 +128,13 @@ html {
     width: 90%;
     margin: 0 auto;
   }
+
   .app__stats {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
   .app__header {
     display: flex;
     flex-direction: column;
@@ -126,11 +142,25 @@ html {
     align-items: center;
     margin: 20px 0px;
   }
+
   .main-heading {
     margin-bottom: 20px;
   }
+
   .app__mapContainer {
     margin-bottom: 20px;
+  }
+
+  .table-chart-container {
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .app__graph {
+    flex-grow: 1;
+    margin: 20px 0px;
   }
 }
 
@@ -140,19 +170,34 @@ html {
     width: 90%;
     margin: 0 auto;
   }
+
   .app__stats {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
   .app__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 20px 0px;
   }
+
   .app__mapContainer {
     margin-bottom: 20px;
+  }
+
+  .table-chart-container {
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .app__graph {
+    flex-grow: 1;
+    margin: 20px 0px;
   }
 }
 
@@ -162,19 +207,34 @@ html {
     width: 90%;
     margin: 0 auto;
   }
+
   .app__stats {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
   .app__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 20px 0px;
   }
+
   .app__mapContainer {
     margin-bottom: 20px;
+  }
+
+  .table-chart-container {
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .app__graph {
+    flex-grow: 0.5;
+    margin: 0px 0px;
   }
 }
 
@@ -184,18 +244,34 @@ html {
     width: 95%;
     margin: 0 auto;
   }
+
   .app__stats {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+
   .app__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 25px 0px;
   }
+
   .app__mapContainer {
     margin-bottom: 20px;
   }
+
+  .table-chart-container {
+    margin: 20px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .app__graph {
+    flex-grow: 0.5;
+    margin: 0px 0px;
+  }
+
 }
