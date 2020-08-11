@@ -82,6 +82,7 @@ const parseChartData = (data, casesType) => {
   }
   return chartData;
 };
+
 const buildChartData = (data, casesType = "cases") => {
   const casesData = parseChartData(data.cases, "cases");
   const recoveredData = parseChartData(data.recovered, "recovered");
@@ -90,23 +91,30 @@ const buildChartData = (data, casesType = "cases") => {
   return [casesData, recoveredData, deathsData];
 };
 
-function LineGraph({ casesType = "cases", ...props }) {
+function LineGraph({ country = "Worldwide", ...props }) {
   const [data, setData] = useState({
     cases: [],
     recovered: [],
     deaths: [],
   });
-  // const [recoveredData, setRecoveredData] = useState({});
-  // const [deathsData, setDeathsData] = useState({});
+  const [countryName, setCountryName] = useState("Worldwide");
 
   useEffect(() => {
+    const url =
+      country === "Worldwide"
+        ? "https://disease.sh/v3/covid-19/historical/all?lastdays=120"
+        : `https://disease.sh/v3/covid-19/historical/${country}?lastdays=120`;
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+      await fetch(url)
         .then((response) => response.json())
         .then((data) => {
+          if (country !== "Worldwide") {
+            setCountryName(data.country);
+            data = data.timeline;
+          }
           const [casesData, recoveredData, deathsData] = buildChartData(
             data,
-            casesType
+            country
           );
 
           setData({
@@ -118,55 +126,81 @@ function LineGraph({ casesType = "cases", ...props }) {
         });
     };
     fetchData();
-  }, [casesType]);
+  }, [country]);
 
   return (
     <div className={props.className}>
       {data.cases?.length > 0 && (
-        <Card>
-          <CardContent>
-            <Line
-              options={options}
-              data={{
-                datasets: [
-                  {
-                    data: data.cases,
-                    backgroundColor: casesTypeColors[casesType].half_op,
-                    borderColor: casesTypeColors[casesType].hex,
+        <div className="graph__cards">
+          <Card className="graph__card">
+            <CardContent>
+              <Line
+                options={{
+                  ...options,
+                  title: {
+                    display: true,
+                    text: "Cases: " + countryName,
                   },
-                ],
-              }}
-            />
-          </CardContent>
-          <CardContent>
-            <Line
-              options={options}
-              data={{
-                datasets: [
-                  {
-                    data: data.recovered,
-                    backgroundColor: casesTypeColors["recovered"].half_op,
-                    borderColor: casesTypeColors["recovered"].hex,
+                }}
+                data={{
+                  datasets: [
+                    {
+                      data: data.cases,
+                      backgroundColor: casesTypeColors["cases"].half_op,
+                      borderColor: casesTypeColors["cases"].hex,
+                    },
+                  ],
+                }}
+              />
+            </CardContent>
+          </Card>
+
+          <Card className="graph__card">
+            <CardContent>
+              <Line
+                options={{
+                  ...options,
+                  title: {
+                    display: true,
+                    text: "Recovered: " + countryName,
                   },
-                ],
-              }}
-            />
-          </CardContent>
-          <CardContent>
-            <Line
-              options={options}
-              data={{
-                datasets: [
-                  {
-                    data: data.deaths,
-                    backgroundColor: casesTypeColors["deaths"].half_op,
-                    borderColor: casesTypeColors["deaths"].hex,
+                }}
+                data={{
+                  datasets: [
+                    {
+                      data: data.recovered,
+                      backgroundColor: casesTypeColors["recovered"].half_op,
+                      borderColor: casesTypeColors["recovered"].hex,
+                    },
+                  ],
+                }}
+              />
+            </CardContent>
+          </Card>
+
+          <Card className="graph__card">
+            <CardContent>
+              <Line
+                options={{
+                  ...options,
+                  title: {
+                    display: true,
+                    text: "Deaths: " + countryName,
                   },
-                ],
-              }}
-            />
-          </CardContent>
-        </Card>
+                }}
+                data={{
+                  datasets: [
+                    {
+                      data: data.deaths,
+                      backgroundColor: casesTypeColors["deaths"].half_op,
+                      borderColor: casesTypeColors["deaths"].hex,
+                    },
+                  ],
+                }}
+              />
+            </CardContent>
+          </Card>
+        </div>
       )}
     </div>
   );
